@@ -5,7 +5,7 @@ export async function countNumberOfValidRecords(region: number) {
     let count: number | undefined;
 
     try {
-        const response = await fetch(`${url}/${method}/${region}`, {mode: 'cors'});
+        const response = await fetch(`${url}/${method}/${region}`);
         const json = await response.json();
         const {error, result} = json;
 
