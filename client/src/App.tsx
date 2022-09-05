@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from "./App.module.css";
-import ActiveCompaniesCounter from "./components/ActiveCompaniesCounter/ActiveCompaniesCounter";
+import SpimexCompaniesCounter from "./components/SpimexCompaniesCounter/SpimexCompaniesCounter";
 
 function App() {
   return (
     <div className={styles.container}>
-      <ActiveCompaniesCounter/>
+      <SpimexCompaniesCounter/>
     </div>
   );
 }

@@ -1,26 +1,24 @@
 import React from 'react';
-import {CountIndicatorFC} from "./types";
-import style from "./CountIndicator.module.css";
+import style from "../SpimexCompaniesCounter/SpimexCompaniesCounter.module.css";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/store";
 
-const CountIndicator: CountIndicatorFC = ({state, count}) => {
-    let message: number | string = STATES.default;
+const MSG_LOADING = 'Loading..';
 
-    switch (state) {
-        case STATES.loading:
-            message = STATES.loading;
-            break;
-        case STATES.error:
-            message = ERROR.server;
-            break;
-        case STATES.done:
-            if (count === undefined)
-                message = ERROR.count;
-            else
-                message = count;
+const CountIndicator = () => {
+    const {loading, error, count} = useSelector((state: RootState) => state.spimexCompaniesCount);
+    let message: number | string = count;
+
+    if (loading) {
+        message = MSG_LOADING;
+    }
+
+    if (error) {
+        message = error;
     }
 
     return (
-        <div className={style.container}>
+        <div className={style.indicator}>
             <span>Companies count:</span>
             <h1>{message}</h1>
         </div>
@@ -28,13 +26,3 @@ const CountIndicator: CountIndicatorFC = ({state, count}) => {
 };
 
 export default CountIndicator;
-export const STATES = {
-    loading: 'Loading...',
-    error: 'Error',
-    done: 'Done',
-    default: '0',
-};
-export const ERROR = {
-    server: 'Server Error',
-    count: 'Count Error',
-}
